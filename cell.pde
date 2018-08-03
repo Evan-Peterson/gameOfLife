@@ -30,15 +30,6 @@ class cell {
     public void update() {
         int count = neighbors();
 
-        //boolean rando = false;
-        /*
-        if(state == 1 && count == 0) {
-            System.out.println("Cell " + x / 20 + y / 20);
-            System.out.println("State: " + state);
-            System.out.println("Count: " + count);
-            rando = true;
-        }
-        */
         if(state == 1) {
             if(count < 2 || count > 3) { // Under Population Over Population
                 state = 0;
@@ -48,25 +39,21 @@ class cell {
                 state = 1;
             }
         }
-        /*
-        if(rando) {
-            System.out.println("Update: " + state);
-        }
-        */
+
     }
 
     private int neighbors() {
         int indexX = x / 20;
         int indexY = y / 20;
 
-        return  cells[indexY - 1][indexX - 1].getState() + // NW
-                cells[indexY - 1][indexX].getState() + // N
-                cells[indexY - 1][indexX + 1].getState()  + // NE
-                cells[indexY][indexX - 1].getState() + // W
-                cells[indexY][indexX + 1].getState() + // E
-                cells[indexY + 1][indexX - 1].getState() + // SW
-                cells[indexY + 1][indexX].getState() + // S
-                cells[indexY + 1][indexX + 1].getState(); // SE
+        return  oldCells[indexY - 1][indexX - 1].getState() + // NW
+                oldCells[indexY - 1][indexX].getState() + // N
+                oldCells[indexY - 1][indexX + 1].getState()  + // NE
+                oldCells[indexY][indexX - 1].getState() + // W
+                oldCells[indexY][indexX + 1].getState() + // E
+                oldCells[indexY + 1][indexX - 1].getState() + // SW
+                oldCells[indexY + 1][indexX].getState() + // S
+                oldCells[indexY + 1][indexX + 1].getState(); // SE
 
     }
 }
