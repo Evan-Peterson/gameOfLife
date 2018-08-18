@@ -1,18 +1,21 @@
 int y = 1500;
 int x = 1500;
 
-//cell[][] cells = new cell[40][40];
-
-//cell[][] oldCells = new cell[40][40];
-
-
+cell[][] cells;
+cell[][] oldCells;
 
 cellRoom main;
 
 void setup() {
     size(800, 800);
 
+    cells = new cell[40][40];
+    oldCells = new cell[40][40];
+
     main = new cellRoom();
+
+
+
     /*
     for(int i = 0;i < cells.length;i++) {
         for(int j = 0;j < cells[0].length;j++) {
@@ -24,7 +27,12 @@ void setup() {
 }
 
 void draw() {
+    main.display();
     main.update();
+
+
+
+
     /*
     for(int i = 0;i < cells.length;i++) {
         for(int j = 0;j < cells[0].length;j++) {

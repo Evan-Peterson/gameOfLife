@@ -46,14 +46,14 @@ class cell {
         int indexX = x / 20;
         int indexY = y / 20;
 
-        return  oldCells[indexY - 1][indexX - 1].getState() + // NW
-                oldCells[indexY - 1][indexX].getState() + // N
-                oldCells[indexY - 1][indexX + 1].getState()  + // NE
-                oldCells[indexY][indexX - 1].getState() + // W
-                oldCells[indexY][indexX + 1].getState() + // E
-                oldCells[indexY + 1][indexX - 1].getState() + // SW
-                oldCells[indexY + 1][indexX].getState() + // S
-                oldCells[indexY + 1][indexX + 1].getState(); // SE
+        return  cells[indexY - 1][indexX - 1].getState() + // NW
+                cells[indexY - 1][indexX].getState() + // N
+                cells[indexY - 1][indexX + 1].getState()  + // NE
+                cells[indexY][indexX - 1].getState() + // W
+                cells[indexY][indexX + 1].getState() + // E
+                cells[indexY + 1][indexX - 1].getState() + // SW
+                cells[indexY + 1][indexX].getState() + // S
+                cells[indexY + 1][indexX + 1].getState(); // SE
 
     }
 }
