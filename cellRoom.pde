@@ -1,7 +1,4 @@
-class cellRoom {
-
-    //cell[][] cells = new cell[40][40];
-    //cell[][] oldCells = new cell[40][40];
+class cellRoom extends room{
 
     int[] states = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
 
@@ -22,23 +19,12 @@ class cellRoom {
     }
 
     public void update() {
-
-
-
         for(int i = 1;i < oldCells.length - 1;i++) {
             for(int j = 1;j < oldCells[0].length - 1;j++) {
                 oldCells[i][j] = cells[i][j];
                 oldCells[i][j].update();
-                cells[i][j] = oldCells[i][j];            
-            }
-        }
-
-        /*
-        for(int i = 0;i < oldCells.length;i++) {
-            for(int j = 0;j < oldCells[0].length;j++) {
                 cells[i][j] = oldCells[i][j];
             }
         }
-        */
     }
 }

@@ -14,38 +14,29 @@ import java.io.IOException;
 
 public class gameOfLife extends PApplet {
 
-cell[][] cells = new cell[75][75];
+int y = 1500;
+int x = 1500;
 
-cell[][] oldCells = new cell[75][75];
+cell[][] cells;
+cell[][] oldCells;
 
-int[] states = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
+cellRoom main;
 
 public void setup() {
     
 
-    for(int i = 0;i < cells.length;i++) {
-        for(int j = 0;j < cells[0].length;j++) {
-            cells[i][j] = new cell(i * 20, j * 20, states[PApplet.parseInt(random(10))]);
-        }
-    }
-    System.out.println("Test01");
+    cells = new cell[40][40];
+    oldCells = new cell[40][40];
+
+    main = new cellRoom();
+
     frameRate(10);
 }
 
 public void draw() {
-    for(int i = 0;i < cells.length;i++) {
-        for(int j = 0;j < cells[0].length;j++) {
-            cells[i][j].display();
-        }
-    }
-    System.out.println("test");
-    for(int i = 1;i < oldCells.length - 1;i++) {
-        for(int j = 1;j < oldCells[0].length - 1;j++) {
-            oldCells[i][j] = cells[i][j];
-            System.out.println("Test");
-            cells[i][j] = oldCells[i][j].update();
-        }
-    }
+    main.display();
+    main.update();
+
 }
 class cell {
 
@@ -79,15 +70,6 @@ class cell {
     public void update() {
         int count = neighbors();
 
-        //boolean rando = false;
-        /*
-        if(state == 1 && count == 0) {
-            System.out.println("Cell " + x / 20 + y / 20);
-            System.out.println("State: " + state);
-            System.out.println("Count: " + count);
-            rando = true;
-        }
-        */
         if(state == 1) {
             if(count < 2 || count > 3) { // Under Population Over Population
                 state = 0;
@@ -97,11 +79,7 @@ class cell {
                 state = 1;
             }
         }
-        /*
-        if(rando) {
-            System.out.println("Update: " + state);
-        }
-        */
+
     }
 
     private int neighbors() {
@@ -119,7 +97,41 @@ class cell {
 
     }
 }
-  public void settings() {  size(1500,1500); }
+class cellRoom {
+
+    int[] states = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
+
+    public cellRoom() {
+        for(int i = 0;i < cells.length;i++) {
+            for(int j = 0;j < cells[0].length;j++) {
+                cells[i][j] = new cell(i * 20, j * 20, states[PApplet.parseInt(random(10))]);
+            }
+        }
+    }
+
+    public void display() {
+        for(int i = 0;i < cells.length;i++) {
+            for(int j = 0;j < cells[0].length;j++) {
+                cells[i][j].display();
+            }
+        }
+    }
+
+    public void update() {
+        for(int i = 1;i < oldCells.length - 1;i++) {
+            for(int j = 1;j < oldCells[0].length - 1;j++) {
+                oldCells[i][j] = cells[i][j];
+                oldCells[i][j].update();
+                cells[i][j] = oldCells[i][j];
+            }
+        }
+    }
+}
+
+class room {
+
+}
+  public void settings() {  size(800, 800); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "gameOfLife" };
     if (passedArgs != null) {
