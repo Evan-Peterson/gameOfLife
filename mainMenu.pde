@@ -10,8 +10,8 @@ class mainMenu extends room {
 
     public void update() {
         if(keyPressed) {
-            if(key == 'ENTER') {
-
+            if(key == 'b') {
+                currentRoom = main;
             }
         }
     }

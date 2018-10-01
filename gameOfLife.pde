@@ -5,6 +5,8 @@ cell[][] cells;
 cell[][] oldCells;
 
 cellRoom main;
+room menu;
+room currentRoom;
 
 void setup() {
     size(800, 800);
@@ -13,12 +15,14 @@ void setup() {
     oldCells = new cell[40][40];
 
     main = new cellRoom();
+    menu = new mainMenu();
+    currentRoom = menu;
 
     frameRate(10);
 }
 
 void draw() {
-    main.display();
-    main.update();
+    currentRoom.display();
+    currentRoom.update();
 
 }
